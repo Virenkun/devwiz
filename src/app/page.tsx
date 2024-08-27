@@ -4,8 +4,17 @@ import { HeroHighlight, Highlight } from "@/components/ui/hero-highlight";
 import ShineBorder from "@/components/magicui/shine-border";
 import ShinyButton from "@/components/magicui/shiny-button";
 import AppCard from "@/components/AppCard";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { UtilitiesList } from "@/data/utlitiesList";
 
 export default function Home() {
+  const router = useRouter()
+
+  const handleOnclick = ({id}: {id: string}) => {
+    router.push(`${id}`);
+  }
   return (
     <div className="h-max">
       <HeroHighlight>
@@ -31,8 +40,8 @@ export default function Home() {
         </motion.h1>
       </HeroHighlight>
       <div className="grid grid-cols-3 gap-12 mx-60">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <AppCard key={i} />
+        {UtilitiesList.map((item, index) => (
+          <AppCard key={index} onClick={()=>(handleOnclick({ id: item.id }))} title={item.name} description={item.description}/>
         ))}
       </div>
     </div>
