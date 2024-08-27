@@ -61,7 +61,8 @@ const UtilityPage = () => {
           result = hexToRgb(value);
           break;
         case "image-to-base64":
-          result = imageToBase64(value);
+          const file = new File([value], "image.jpg", { type: "image/jpeg" });
+          result = imageToBase64(file);
           break;
         case "json-to-csv":
           result = jsonToCsv(value);
